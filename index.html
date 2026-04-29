@@ -595,20 +595,47 @@
       Imatges que mostren el deteriorament actual de S'Escorxador i la urgència d'actuar.
     </p>
     <div class="gallery-grid" id="gallery-grid">
-      <div class="gallery-item" onclick="openLightbox('images/photo1.jpg')">
-        <img src="images/photo1.jpg" alt="Instal·lació elèctrica deteriorada" loading="lazy">
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/WhatsApp Image 2026-04-22 at 14.03.43.jpeg" alt="Deteriorament de S'Escorxador" loading="lazy">
       </div>
-      <div class="gallery-item" onclick="openLightbox('images/photo2.jpg')">
-        <img src="images/photo2.jpg" alt="Zona amb tanca verda caiguda" loading="lazy">
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/WhatsApp Image 2026-04-22 at 14.03.43 (1).jpeg" alt="Deteriorament de S'Escorxador" loading="lazy">
       </div>
-      <div class="gallery-item" onclick="openLightbox('images/photo3.jpg')">
-        <img src="images/photo3.jpg" alt="Parc infantil amb paret apuntalada al fons" loading="lazy">
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/WhatsApp Image 2026-04-22 at 14.03.43 (2).jpeg" alt="Deteriorament de S'Escorxador" loading="lazy">
       </div>
-      <div class="gallery-item" onclick="openLightbox('images/photo4.jpg')">
-        <img src="images/photo4.jpg" alt="Paret exterior amb apuntalament" loading="lazy">
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/WhatsApp Image 2026-04-22 at 14.03.44.jpeg" alt="Deteriorament de S'Escorxador" loading="lazy">
       </div>
-      <div class="gallery-item" onclick="openLightbox('images/photo5.jpg')">
-        <img src="images/photo5.jpg" alt="Xarxa de seguretat caiguda a la vorera" loading="lazy">
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/WhatsApp Image 2026-04-22 at 14.03.44 (1).jpeg" alt="Deteriorament de S'Escorxador" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/WhatsApp Image 2026-04-22 at 14.06.07.jpeg" alt="Deteriorament de S'Escorxador" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/WhatsApp Image 2026-04-22 at 14.06.08.jpeg" alt="Deteriorament de S'Escorxador" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/WhatsApp Image 2026-04-22 at 14.06.08 (1).jpeg" alt="Deteriorament de S'Escorxador" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/WhatsApp Image 2026-04-22 at 14.19.44.jpeg" alt="Deteriorament de S'Escorxador" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/WhatsApp Image 2026-04-22 at 14.19.44 (1).jpeg" alt="Deteriorament de S'Escorxador" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/WhatsApp Image 2026-04-22 at 14.19.45.jpeg" alt="Deteriorament de S'Escorxador" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/WhatsApp Image 2026-04-22 at 16.41.56.jpeg" alt="Deteriorament de S'Escorxador" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/WhatsApp Image 2026-04-22 at 17.23.06.jpeg" alt="Deteriorament de S'Escorxador" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="images/WhatsApp Image 2026-04-22 at 17.23.06 (1).jpeg" alt="Deteriorament de S'Escorxador" loading="lazy">
       </div>
     </div>
   </div>
@@ -734,8 +761,8 @@
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
 
-  function openLightbox(src) {
-    lightboxImg.src = src;
+  function openLightbox(el) {
+    lightboxImg.src = el.querySelector('img').src;
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
