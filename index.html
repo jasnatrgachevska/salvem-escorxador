@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plataforma veïnal per la dignificació i rehabilitació de S'Escorxador de Palma de Mallorca.">
+  <title>Salvem S'Escorxador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #C0392B;
+      --dark-red: #96281B;
+      --black: #1a1a1a;
+      --off-white: #FAFAF7;
+      --light-gray: #F2EFE9;
+      --gray: #666;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--off-white);
+      color: var(--black);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; width: 100%;
+      background: rgba(26, 26, 26, 0.97);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.3rem;
+      color: var(--red);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.8rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--red); }
+
+    .btn-lang {
+      background: var(--red);
+      color: #fff;
+      border: none;
+      padding: 0.38rem 0.85rem;
+      border-radius: 3px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      transition: background 0.2s;
+    }
+    .btn-lang:hover { background: var(--dark-red); }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.6rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: var(--black);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(192,57,43,0.18) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 0.9rem;
+      color: var(--red);
+      letter-spacing: 5px;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(5rem, 14vw, 11rem);
+      color: var(--off-white);
+      letter-spacing: 3px;
+      line-height: 0.88;
+      position: relative;
+    }
+
+    .hero-title .exclaim { color: var(--red); }
+
+    .hero-subtitle {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(2rem, 5.5vw, 4.5rem);
+      color: var(--off-white);
+      letter-spacing: 4px;
+      position: relative;
+      margin-top: 0.3rem;
+    }
+
+    .hero-slogan {
+      margin-top: 2.2rem;
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(0.9rem, 2.2vw, 1.5rem);
+      color: var(--off-white);
+      letter-spacing: 3px;
+      border-top: 2px solid var(--red);
+      border-bottom: 2px solid var(--red);
+      padding: 0.75rem 2.5rem;
+      position: relative;
+    }
+
+    .hero-actions {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: #fff;
+      padding: 0.85rem 2rem;
+      text-decoration: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+      border-radius: 3px;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--dark-red); transform: translateY(-2px); }
+
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.6);
+      color: var(--off-white);
+      padding: 0.85rem 2rem;
+      text-decoration: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+      border-radius: 3px;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { background: var(--off-white); color: var(--black); border-color: var(--off-white); }
+
+    /* ── SHARED SECTION STYLES ── */
+    section { padding: 5.5rem 2rem; }
+
+    .container { max-width: 900px; margin: 0 auto; }
+
+    .section-eyebrow {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 0.8rem;
+      color: var(--red);
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      letter-spacing: 2px;
+      line-height: 1;
+      margin-bottom: 2rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--light-gray); }
+
+    #about p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #333;
+      margin-bottom: 1.2rem;
+    }
+
+    #about p:last-child { margin-bottom: 0; }
+
+    #about strong { color: var(--red); font-weight: 700; }
+
+    /* ── OBJECTIVES ── */
+    #objectives { background: var(--black); }
+    #objectives h2 { color: var(--off-white); }
+    #objectives .section-eyebrow { color: var(--red); }
+
+    .objectives-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .obj-card {
+      border-left: 4px solid var(--red);
+      padding: 1.8rem 1.5rem;
+      background: rgba(255,255,255,0.04);
+      border-radius: 0 6px 6px 0;
+      transition: background 0.2s;
+    }
+    .obj-card:hover { background: rgba(255,255,255,0.08); }
+
+    .obj-number {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 3.5rem;
+      color: var(--red);
+      opacity: 0.35;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .obj-card p {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.82);
+    }
+
+    /* ── GALLERY ── */
+    #gallery { background: var(--off-white); }
+
+    .gallery-intro {
+      font-size: 1rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .gallery-item {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border-radius: 4px;
+      background: #dedad4;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease, filter 0.4s ease;
+      filter: grayscale(15%);
+      display: block;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+      filter: grayscale(0%);
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.93);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+
+    .lightbox-img {
+      max-width: 92vw;
+      max-height: 92vh;
+      object-fit: contain;
+      border-radius: 3px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.8rem;
+      color: rgba(255,255,255,0.7);
+      font-size: 2.8rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .lightbox-close:hover { color: #fff; }
+
+    /* ── NEWS ── */
+    #news { background: var(--light-gray); }
+
+    .news-card {
+      background: var(--off-white);
+      border-radius: 6px;
+      padding: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .news-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    .news-badge {
+      background: var(--red);
+      color: #fff;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      padding: 0.3rem 0.7rem;
+      border-radius: 3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      align-self: flex-start;
+      margin-top: 0.2rem;
+    }
+
+    .news-content h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      line-height: 1.45;
+    }
+
+    .news-date {
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+
+    /* ── JOIN ── */
+    #join {
+      background: var(--red);
+      color: #fff;
+      text-align: center;
+    }
+
+    #join h2 { color: #fff; margin-bottom: 1rem; }
+
+    .join-desc {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      opacity: 0.92;
+      max-width: 600px;
+      margin: 0 auto 2.2rem;
+    }
+
+    .join-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-white {
+      background: #fff;
+      color: var(--red);
+      padding: 0.85rem 1.8rem;
+      text-decoration: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.82rem;
+      border-radius: 3px;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+    .btn-white:hover { background: var(--black); color: #fff; transform: translateY(-2px); }
+
+    .btn-icon { font-size: 1.1rem; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--black); text-align: center; }
+    #contact h2 { color: var(--off-white); }
+    #contact .section-eyebrow { color: var(--red); }
+
+    .contact-grid {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      color: var(--off-white);
+      padding: 1.8rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      min-width: 150px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .contact-card:hover {
+      border-color: var(--red);
+      color: #fff;
+      background: rgba(192,57,43,0.08);
+    }
+
+    .contact-icon { font-size: 2rem; }
+    .contact-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+    .contact-value {
+      font-size: 0.82rem;
+      opacity: 0.65;
+      word-break: break-all;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      padding: 1.4rem 2rem;
+      font-size: 0.78rem;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 720px) {
+      .nav-links { display: none; flex-direction: column; gap: 1rem; position: absolute; top: 100%; left: 0; right: 0; background: rgba(20,20,20,0.99); padding: 1.5rem 2rem; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: block; }
+
+      #hero { padding-top: 5rem; }
+
+      .news-card { flex-direction: column; gap: 1rem; }
+
+      .contact-grid { flex-direction: column; align-items: center; }
+      .contact-card { width: 100%; max-width: 320px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Salvem S'Escorxador</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about" data-ca="Qui som" data-es="Quiénes somos">Qui som</a></li>
+    <li><a href="#objectives" data-ca="Objectius" data-es="Objetivos">Objectius</a></li>
+    <li><a href="#gallery" data-ca="Imatges" data-es="Imágenes">Imatges</a></li>
+    <li><a href="#news" data-ca="Notícies" data-es="Noticias">Notícies</a></li>
+    <li><a href="#join" data-ca="Uneix-te" data-es="Únete">Uneix-te</a></li>
+    <li><a href="#contact" data-ca="Contacte" data-es="Contacto">Contacte</a></li>
+    <li><button class="btn-lang" id="btn-lang" onclick="toggleLang()">ES</button></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow" data-ca="Plataforma Veïnal · Palma de Mallorca" data-es="Plataforma Vecinal · Palma de Mallorca">Plataforma Veïnal · Palma de Mallorca</div>
+  <div class="hero-title">SALVEM<span class="exclaim">!!</span></div>
+  <div class="hero-subtitle">S'ESCORXADOR</div>
+  <div class="hero-slogan" data-ca="Per un S'Escorxador segur, digne i viu!" data-es="¡Por un S'Escorxador seguro, digno y vivo!">
+    Per un S'Escorxador segur, digne i viu!
+  </div>
+  <div class="hero-actions">
+    <a href="#join" class="btn-primary" data-ca="Uneix-te ara" data-es="Únete ahora">Uneix-te ara</a>
+    <a href="#about" class="btn-outline" data-ca="Saber més" data-es="Saber más">Saber més</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-eyebrow" data-ca="La plataforma" data-es="La plataforma">La plataforma</div>
+    <h2 data-ca="Qui som" data-es="Quiénes somos">Qui som</h2>
+    <p data-ca="Un grup de veïns i veïnes del barri hem constituït la plataforma <strong>Salvem S'Escorxador</strong>, amb la voluntat de posar de manifest una situació de deteriorament que fa temps que es produeix i que, malauradament, no ha rebut una resposta adequada."
+       data-es="Un grupo de vecinos y vecinas del barrio hemos constituido la plataforma <strong>Salvem S'Escorxador</strong>, con la voluntad de dar a conocer una situación de deterioro que lleva tiempo produciéndose y que, lamentablemente, no ha recibido una respuesta adecuada.">
+      Un grup de veïns i veïnes del barri hem constituït la plataforma <strong>Salvem S'Escorxador</strong>, amb la voluntat de posar de manifest una situació de deteriorament que fa temps que es produeix i que, malauradament, no ha rebut una resposta adequada.
+    </p>
+    <p data-ca="S'Escorxador és un espai de referència social i cultural per al barri, a més de ser un edifici històric. Un lloc de convivència, de trobada i d'activitat comunitària que forma part del dia a dia de moltes persones."
+       data-es="S'Escorxador es un espacio de referencia social y cultural para el barrio, además de ser un edificio histórico. Un lugar de convivencia, de encuentro y de actividad comunitaria que forma parte del día a día de muchas personas.">
+      S'Escorxador és un espai de referència social i cultural per al barri, a més de ser un edifici històric. Un lloc de convivència, de trobada i d'activitat comunitària que forma part del dia a dia de moltes persones.
+    </p>
+    <p data-ca="Des de fa anys, però, aquest espai presenta un estat de conservació deficient: instal·lacions deteriorades, manca de manteniment i una progressiva degradació que preocupa als veïnats. La presència d'una paret apuntalada a prop de la zona del parc infantil ha posat de manifest, de manera evident, la necessitat d'una actuació urgent."
+       data-es="Desde hace años, sin embargo, este espacio presenta un estado de conservación deficiente: instalaciones deterioradas, falta de mantenimiento y una progresiva degradación que preocupa a los vecinos. La presencia de una pared apuntalada cerca de la zona del parque infantil ha evidenciado, de manera clara, la necesidad de una actuación urgente.">
+      Des de fa anys, però, aquest espai presenta un estat de conservació deficient: instal·lacions deteriorades, manca de manteniment i una progressiva degradació que preocupa als veïnats. La presència d'una paret apuntalada a prop de la zona del parc infantil ha posat de manifest, de manera evident, la necessitat d'una actuació urgent.
+    </p>
+    <p data-ca="Creiem que aquesta situació és el resultat d'una manca de manteniment sostinguda en el temps. Davant la manca de respostes clares i actuacions efectives per part de l'administració, consideram necessari organitzar-nos per traslladar aquesta preocupació de manera col·lectiva."
+       data-es="Creemos que esta situación es el resultado de una falta de mantenimiento sostenida en el tiempo. Ante la falta de respuestas claras y actuaciones efectivas por parte de la administración, consideramos necesario organizarnos para trasladar esta preocupación de manera colectiva.">
+      Creiem que aquesta situació és el resultat d'una manca de manteniment sostinguda en el temps. Davant la manca de respostes clares i actuacions efectives per part de l'administració, consideram necessari organitzar-nos per traslladar aquesta preocupació de manera col·lectiva.
+    </p>
+  </div>
+</section>
+
+<!-- OBJECTIVES -->
+<section id="objectives">
+  <div class="container">
+    <div class="section-eyebrow" data-ca="El nostre compromís" data-es="Nuestro compromiso">El nostre compromís</div>
+    <h2 data-ca="Objectius" data-es="Objetivos">Objectius</h2>
+    <div class="objectives-grid">
+
+      <div class="obj-card">
+        <div class="obj-number">01</div>
+        <p data-ca="Reclamar una intervenció immediata per garantir la seguretat de l'espai."
+           data-es="Reclamar una intervención inmediata para garantizar la seguridad del espacio.">
+          Reclamar una intervenció immediata per garantir la seguretat de l'espai.
+        </p>
+      </div>
+
+      <div class="obj-card">
+        <div class="obj-number">02</div>
+        <p data-ca="Exigir un pla de manteniment adequat i continuat de les instal·lacions."
+           data-es="Exigir un plan de mantenimiento adecuado y continuado de las instalaciones.">
+          Exigir un pla de manteniment adequat i continuat de les instal·lacions.
+        </p>
+      </div>
+
+      <div class="obj-card">
+        <div class="obj-number">03</div>
+        <p data-ca="Reivindicar la dignificació i la reactivació d'un espai clau per a la vida social i cultural del barri."
+           data-es="Reivindicar la dignificación y la reactivación de un espacio clave para la vida social y cultural del barrio.">
+          Reivindicar la dignificació i la reactivació d'un espai clau per a la vida social i cultural del barri.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-eyebrow" data-ca="Evidències" data-es="Evidencias">Evidències</div>
+    <h2 data-ca="L'estat actual" data-es="El estado actual">L'estat actual</h2>
+    <p class="gallery-intro"
+       data-ca="Imatges que mostren el deteriorament actual de S'Escorxador i la urgència d'actuar."
+       data-es="Imágenes que muestran el deterioro actual de S'Escorxador y la urgencia de actuar.">
+      Imatges que mostren el deteriorament actual de S'Escorxador i la urgència d'actuar.
+    </p>
+    <div class="gallery-grid" id="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox('images/photo1.jpg')">
+        <img src="images/photo1.jpg" alt="Instal·lació elèctrica deteriorada" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/photo2.jpg')">
+        <img src="images/photo2.jpg" alt="Zona amb tanca verda caiguda" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/photo3.jpg')">
+        <img src="images/photo3.jpg" alt="Parc infantil amb paret apuntalada al fons" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/photo4.jpg')">
+        <img src="images/photo4.jpg" alt="Paret exterior amb apuntalament" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/photo5.jpg')">
+        <img src="images/photo5.jpg" alt="Xarxa de seguretat caiguda a la vorera" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <span class="lightbox-close" id="lightbox-close" aria-label="Tancar">&times;</span>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+</div>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="container">
+    <div class="section-eyebrow" data-ca="Premsa" data-es="Prensa">Premsa</div>
+    <h2 data-ca="Notícies" data-es="Noticias">Notícies</h2>
+    <a href="https://www.diariodemallorca.es/palma/2026/04/23/centenar-vecinos-crea-plataforma-salvem-129399058.html"
+       target="_blank" rel="noopener noreferrer" class="news-card">
+      <span class="news-badge">Diario de Mallorca</span>
+      <div class="news-content">
+        <h3 data-ca="Un centenar de veïns crea la plataforma Salvem S'Escorxador per reclamar la rehabilitació de l'emblemàtic edifici"
+            data-es="Un centenar de vecinos crea la plataforma Salvem S'Escorxador para reclamar la rehabilitación del emblemático edificio">
+          Un centenar de veïns crea la plataforma Salvem S'Escorxador per reclamar la rehabilitació de l'emblemàtic edifici
+        </h3>
+        <p class="news-date"
+           data-ca="Diario de Mallorca · 23 d'abril de 2026"
+           data-es="Diario de Mallorca · 23 de abril de 2026">
+          Diario de Mallorca · 23 d'abril de 2026
+        </p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section id="join">
+  <div class="container">
+    <h2 data-ca="Uneix-te!" data-es="¡Únete!">Uneix-te!</h2>
+    <p class="join-desc"
+       data-ca="La cura dels espais públics és una responsabilitat compartida, però també institucional. Suma't a la plataforma i ajuda'ns a preservar i millorar un espai que és de tots i totes!"
+       data-es="El cuidado de los espacios públicos es una responsabilidad compartida, pero también institucional. ¡Súmate a la plataforma y ayúdanos a preservar y mejorar un espacio que es de todos y todas!">
+      La cura dels espais públics és una responsabilitat compartida, però també institucional. Suma't a la plataforma i ajuda'ns a preservar i millorar un espai que és de tots i totes!
+    </p>
+    <div class="join-buttons">
+      <a href="https://chat.whatsapp.com/DgE4sczXppl5kTDvmjQC8y?mode=gi_t"
+         target="_blank" rel="noopener noreferrer" class="btn-white">
+        <span class="btn-icon">💬</span>
+        <span data-ca="Grup de WhatsApp" data-es="Grupo de WhatsApp">Grup de WhatsApp</span>
+      </a>
+      <a href="https://www.instagram.com/salvemescorxador"
+         target="_blank" rel="noopener noreferrer" class="btn-white">
+        <span class="btn-icon">📸</span>
+        Instagram
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61567432367338"
+         target="_blank" rel="noopener noreferrer" class="btn-white">
+        <span class="btn-icon">👥</span>
+        Facebook
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-eyebrow" data-ca="Contacta'ns" data-es="Contáctanos">Contacta'ns</div>
+    <h2 data-ca="Contacte" data-es="Contacto">Contacte</h2>
+    <div class="contact-grid">
+      <a href="mailto:salvemescorxador@gmail.com" class="contact-card">
+        <span class="contact-icon">✉️</span>
+        <span class="contact-label">Email</span>
+        <span class="contact-value">salvemescorxador@gmail.com</span>
+      </a>
+      <a href="https://www.instagram.com/salvemescorxador"
+         target="_blank" rel="noopener noreferrer" class="contact-card">
+        <span class="contact-icon">📸</span>
+        <span class="contact-label">Instagram</span>
+        <span class="contact-value">@salvemescorxador</span>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61567432367338"
+         target="_blank" rel="noopener noreferrer" class="contact-card">
+        <span class="contact-icon">👥</span>
+        <span class="contact-label">Facebook</span>
+        <span class="contact-value">Salvem S'Escorxador</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Plataforma Salvem S'Escorxador · Palma de Mallorca</p>
+</footer>
+
+<script>
+  /* ── Language toggle ── */
+  let lang = 'ca';
+
+  function toggleLang() {
+    lang = lang === 'ca' ? 'es' : 'ca';
+    document.getElementById('btn-lang').textContent = lang === 'ca' ? 'ES' : 'CA';
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-ca]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (val !== null) el.innerHTML = val;
+    });
+  }
+
+  /* ── Hamburger ── */
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('open');
+  });
+
+  /* close menu on nav link click */
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('nav-links').classList.remove('open');
+    });
+  });
+
+  /* ── Lightbox ── */
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  function openLightbox(src) {
+    lightboxImg.src = src;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+
+</body>
+</html>
